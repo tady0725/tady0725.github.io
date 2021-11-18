@@ -45,10 +45,10 @@ function predict(imgElement){
     const smalImg = tf.image.resizeBilinear(tfImg, [28, 28]);
     // 將 tensor 設為浮點型態，且將張量攤平至四維矩陣。此時 shape 為 [1, 28,28,1]
     let tensor = smalImg.reshape([1, 28,28,1]);
-    // 將所有數值除以255 正歸化
+    // 將所有數值除以255 正歸化 +
     tensor=tensor.div(tf.scalar(255));
     // 預測 
-    
+
     const pred = model.predict(tensor);
     const result = pred.dataSync();
     // 取得 one hot encoding 陣列中最大的索引
