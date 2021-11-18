@@ -1,3 +1,5 @@
+
+
 async function init(){
     model= await tf.loadLayersModel('./models/model.json');
     console.log('load model...');
@@ -42,7 +44,7 @@ function predict(imgElement){
     // 強制將圖片縮小到 28*28 像素
     const smalImg = tf.image.resizeBilinear(tfImg, [28, 28]);
     // 將 tensor 設為浮點型態，且將張量攤平至一為矩陣。此時 shape 為 [1, 784]
-    let tensor = smalImg.reshape([1, 28,28,1]);
+    let tensor = smalImg.reshape([1, -1]);
     // 將所有數值除以255
     tensor=tensor.div(tf.scalar(255));
     // 預測 
